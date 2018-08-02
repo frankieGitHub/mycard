@@ -1,8 +1,10 @@
 package com.mycard.mycard;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,13 @@ public class LoginActivity extends RobinActivity {
     @Override
     protected void onLogin(String email, String password) {
         Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
+
+        if(password.equals("123")) {
+            Log.e("frankie", "123");
+            startActivity(new Intent(this, ScrollingActivity.class));
+        }
+        else if(password.equals("321")) Log.e("frankie", "321");
+        startActivity(new Intent(this, test1.class));
     }
 
     @Override
