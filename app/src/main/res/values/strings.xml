@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">mycard</string>
+
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+    <string name="title_3">Bad card</string>
+    <string name="title_4">Ugly card</string>
+
+    <string name="text_1">aaa</string>
+    <string name="text_2">bbb</string>
+    <string name="text_3">ccc</string>
+    <string name="text_4">ddd</string>
+
     <string name="title_activity_test1">test1</string>
     <string name="title_activity_test2">test2</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
