@@ -41,7 +41,7 @@ public class LoginActivity extends RobinActivity {
 
         if(password.equals("123")) {
             Log.e("frankie", "123");
-            startActivity(new Intent(this, ScrollingActivity.class));
+            startActivity(new Intent(this, test2.class));
         }
         else if(password.equals("321")) {
             Log.e("frankie", "321");
