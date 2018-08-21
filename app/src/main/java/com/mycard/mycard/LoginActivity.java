@@ -1,19 +1,24 @@
 package com.mycard.mycard;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mycard.mycard.comm.CommunicationManager;
+import com.mycard.mycard.model.User;
 import com.sirvar.robin.RobinActivity;
 import com.sirvar.robin.Theme;
 
 
 public class LoginActivity extends RobinActivity {
 
+    final String TAG = "LoginActivity";
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -31,13 +36,14 @@ public class LoginActivity extends RobinActivity {
         setTheme(Theme.LIGHT);
         disableSocialLogin();
         showLoginFirst();
-
     }
 
 
     @Override
     protected void onLogin(String email, String password) {
         Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
+
+        new UpdateTask().execute(email, password);
 
         if(password.equals("123")) {
             Log.e("frankie", "123");
@@ -73,6 +79,46 @@ public class LoginActivity extends RobinActivity {
     protected void onFacebookLogin() {
         Toast.makeText(getApplicationContext(), "Facebook", Toast.LENGTH_SHORT).show();
     }
+
+    private class UpdateTask extends AsyncTask<String, Void, User> {
+
+        private ProgressDialog mProgressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            mProgressDialog = new ProgressDialog(LoginActivity.this);
+            mProgressDialog.setMessage("login...");
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected User doInBackground(String... params) {
+            User registered = null;
+            try {
+                registered = CommunicationManager.getInstance(getBaseContext())
+                        .loginUser(params[0], params[1]);
+            } catch (Exception e) {
+                Log.e(TAG, "Error login in: " + e.getMessage());
+            }
+            return registered;
+        }
+
+        @Override
+        protected void onPostExecute(User result) {
+            mProgressDialog.dismiss();
+            if (result != null) {
+                Toast.makeText(getBaseContext(),
+                        "onPostExecute", Toast.LENGTH_LONG).show();
+
+
+                finish();
+            } else {
+                Toast.makeText(getBaseContext(), "onPostExe error", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
