@@ -19,6 +19,7 @@ public class JSONManager {
 	private static final String ATTR_EMAIL = "email";
 	private static final String ATTR_FIRST_NAME = "first_name";
 	private static final String ATTR_LAST_NAME = "last_name";
+	private static final String ATTR_PASS_WORD = "pass_word";
 
 
 	public static User processRegister(Context ctx, String responseText) throws Exception {
@@ -30,7 +31,9 @@ public class JSONManager {
 			.setAccessToken(jsonObject.getString(ATTR_ACCESS_TOKEN))
 			.setEmail(jsonObject.getString(ATTR_EMAIL))
 			.setFirstName(jsonObject.getString(ATTR_FIRST_NAME))
-			.setLastName(jsonObject.getString(ATTR_LAST_NAME));
+			.setLastName(jsonObject.getString(ATTR_LAST_NAME))
+				.setPassWord(jsonObject.getString(ATTR_PASS_WORD));
+
 
 		return result;
 	}
@@ -59,6 +62,7 @@ public class JSONManager {
 			jsonObject.put(ATTR_FIRST_NAME, user.getFirstName());
 			jsonObject.put(ATTR_LAST_NAME, user.getLastName());
 			jsonObject.put(ATTR_EMAIL, user.getEmail());
+			jsonObject.put(ATTR_PASS_WORD, user.getmPassWord());
 		} catch (JSONException e) {
 			Log.e(TAG, "Error generating JSON for user creation");
 		}

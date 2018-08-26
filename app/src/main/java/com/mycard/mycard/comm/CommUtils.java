@@ -107,9 +107,9 @@ public class CommUtils {
 			StringEntity se = new StringEntity(json.toString());
 			httppost.setEntity(se);
 			httppost.setHeader("Content-type", "application/json");
+
 			HttpResponse response = client.execute(httppost);
 			res = handleResponse(response);
-
 		} catch (UnsupportedEncodingException e) {
 			res.success = false;
 			res.msgError = "Error UnsupportedEncodingException: " + e.getMessage();

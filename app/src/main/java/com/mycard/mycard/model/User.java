@@ -2,6 +2,7 @@ package com.mycard.mycard.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 
 public class User implements Parcelable {
@@ -24,6 +25,7 @@ public class User implements Parcelable {
 	private String mFirstName;
 	private String mLastName;
 	private String mEmail;
+	private String mPassWord;
 	
 	public User() { }
 	
@@ -34,6 +36,7 @@ public class User implements Parcelable {
         mFirstName = in.readString();
         mLastName = in.readString();
         mEmail = in.readString();
+        mPassWord = in.readString();
     }
 	
 	public int getId() {
@@ -79,6 +82,14 @@ public class User implements Parcelable {
 		return this;
 	}
 
+	public String getmPassWord() {
+		return mPassWord;
+	}
+	public User setPassWord(String pwd) {
+		this.mPassWord = pwd;
+		return this;
+	}
+
     @Override
     public int describeContents() {
         return 0;
@@ -92,5 +103,8 @@ public class User implements Parcelable {
         dest.writeString(mFirstName);
         dest.writeString(mLastName);
         dest.writeString(mEmail);
+        dest.writeString(mPassWord);
+
+        Log.e("frankie", "add pass word");
     }
 }

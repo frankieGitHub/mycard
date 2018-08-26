@@ -12,7 +12,10 @@ import org.json.JSONObject;
 public class CommunicationManager {
 	private static final String TAG = "Comm";
 
-	private static final String URL_PATH = "http://10.0.3.2:5000/mymusic/api/v1.0/users/";
+//	private static final String URL_PATH = "http://192.168.1.2:8000/mymusic/api/v1.0/users/";
+//	private static final String URL_PATH = "http://10.0.3.2:5000/mymusic/api/v1.0/users/";
+	private static final String URL_PATH = "http://192.168.43.3:8000/mymusic/api/v1.0/users/";
+
 
 	private static Context sContext;
 	private static CommunicationManager sINSTANCE = null;
